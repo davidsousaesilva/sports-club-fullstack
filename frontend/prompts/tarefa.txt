@@ -1,0 +1,28 @@
+## Tarefa
+```
+```
+
+## Package structure do projeto atual (os ficheiros marcados com "X" existem mas estão vazios)
+```
+```
+
+## Ficheiros do projeto atual relevantes
+```
+```
+
+## Código antigo para refatorar; está desorganizado e sem integração com API do backend (foi gerado pelo figma make)
+```
+```
+
+## Endpoints REST / requests / responses / filters do backend
+```
+```
+
+## Restrições adicionais
+```
+```
+
+## Nota
+```
+- Se não tiveres contexto suficiente, podes-me pedir ficheiros do projeto atual ou ficheiros do projeto antigo. Tambem podes fazer perguntas. Podes acrescentar novos ficheiros à estrutura base existente.
+```
