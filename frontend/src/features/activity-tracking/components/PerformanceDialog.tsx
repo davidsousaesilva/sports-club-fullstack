@@ -96,9 +96,15 @@ function PerformanceDialog({
   }, [eligibleAthletes, open, performances, statisticTypes]);
 
   const summary = useMemo(() => {
-    const allValues = performances.map((performance) => performance.value);
+    const scorePerformances = performances.filter(
+      (performance) =>
+        performance.statisticTypeName?.trim().toLowerCase() === "score",
+    );
+
+    const allValues = scorePerformances.map((performance) => performance.value);
+
     const totalAthletes = new Set(
-      performances.map((performance) => performance.athleteId),
+      scorePerformances.map((performance) => performance.athleteId),
     ).size;
 
     if (allValues.length === 0) {
@@ -111,6 +117,7 @@ function PerformanceDialog({
 
     const average =
       allValues.reduce((sum, value) => sum + value, 0) / allValues.length;
+
     const best = Math.max(...allValues);
 
     return {
