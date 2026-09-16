@@ -79,7 +79,7 @@ function SelfGuidedTrainingPage() {
       <header className="flex items-start justify-between gap-4">
         <div className="space-y-1">
           <h1 className="text-2xl font-semibold text-slate-950">
-            Treino livre
+            Treinos livres
           </h1>
           <p className="text-sm text-slate-600">
             Regista presenças de treino livre por equipa e data.

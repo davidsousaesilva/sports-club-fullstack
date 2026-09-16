@@ -111,7 +111,7 @@ const navigationSections = [
     iconKey: "event",
   },
   {
-    label: "Financeiro",
+    label: "Finanças",
     path: appPaths.finance,
     roles: ["MANAGER", "EMPLOYEE", "ATHLETE"],
     iconKey: "finance",
