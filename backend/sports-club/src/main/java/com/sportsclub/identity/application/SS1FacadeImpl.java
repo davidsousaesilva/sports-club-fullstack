@@ -36,6 +36,7 @@ import com.sportsclub.identity.service.NotificationService;
 import com.sportsclub.identity.service.SS1FactoryService;
 import com.sportsclub.identity.service.SS1Mapper;
 import com.sportsclub.shared.application.VersionValidator;
+import com.sportsclub.shared.controller.InvalidCurrentPasswordException;
 
 @Service
 @Transactional
@@ -163,8 +164,12 @@ public class SS1FacadeImpl implements SS1Facade {
         }
 
         if (person.getPasswordHash() == null ||
-                !passwordEncoder.matches(request.currentPassword(), person.getPasswordHash())) {
-            return new AlterPasswordResponse(false);
+                !passwordEncoder.matches(
+                        request.currentPassword(),
+                        person.getPasswordHash())) {
+
+            throw new InvalidCurrentPasswordException(
+                    "Current password is incorrect.");
         }
 
         person.changePassword(
