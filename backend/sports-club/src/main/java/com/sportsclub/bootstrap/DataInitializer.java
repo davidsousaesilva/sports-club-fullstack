@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.sportsclub.sportscore.domain.entities.StatisticType;
+import com.sportsclub.sportscore.repository.StatisticTypeRepository;
 import com.sportsclub.identity.domain.entities.Person;
 import com.sportsclub.identity.domain.entities.PersonRole;
 import com.sportsclub.identity.domain.enums.Gender;
@@ -19,6 +21,7 @@ import jakarta.transaction.Transactional;
 public class DataInitializer implements CommandLineRunner {
 
     private final PersonRepository personRepository;
+    private final StatisticTypeRepository statisticTypeRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Value("${app.admin.email}")
@@ -29,8 +32,11 @@ public class DataInitializer implements CommandLineRunner {
 
     public DataInitializer(
             PersonRepository personRepository,
+            StatisticTypeRepository statisticTypeRepository,
             PasswordEncoder passwordEncoder) {
+
         this.personRepository = personRepository;
+        this.statisticTypeRepository = statisticTypeRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -64,6 +70,17 @@ public class DataInitializer implements CommandLineRunner {
             manager.addRole(role);
 
             personRepository.save(manager);
+        }
+
+        if (statisticTypeRepository.findByNameIgnoreCase("score").isEmpty()) {
+
+            StatisticType score = new StatisticType(
+                    "score",
+                    "0_10",
+                    true
+            );
+
+            statisticTypeRepository.save(score);
         }
     }
 }

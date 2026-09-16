@@ -61,16 +61,20 @@ public interface PerformanceRepository extends JpaRepository<Performance, Intege
                 from Performance p
                 where p.athlete.id = :personId
                 and p.training is not null
+                and p.statisticType.name = 'score'
                 """)
-        BigDecimal averageTrainingPerformanceByAthleteId(@Param("personId") Integer personId);
+        BigDecimal averageTrainingPerformanceByAthleteId(
+                @Param("personId") Integer personId);
 
         @Query("""
                 select coalesce(avg(p.value), 0)
                 from Performance p
                 where p.athlete.id = :personId
                 and p.event is not null
+                and p.statisticType.name = 'score'
                 """)
-        BigDecimal averageEventPerformanceByAthleteId(@Param("personId") Integer personId);
+        BigDecimal averageEventPerformanceByAthleteId(
+                @Param("personId") Integer personId);
 
         long countByAthleteIdAndTrainingIsNotNull(Integer athleteId);
 

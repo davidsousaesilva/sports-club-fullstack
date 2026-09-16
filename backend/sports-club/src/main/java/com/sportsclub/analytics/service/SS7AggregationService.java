@@ -58,7 +58,7 @@ public class SS7AggregationService {
     private final TrainingRepository trainingRepository;
     private final EventRepository eventRepository;
     private final PerformanceRepository performanceRepository;
-    private static final String GRADE_STATISTIC_NAME = "nota";
+    private static final String SCORE_STATISTIC_NAME = "score";
 
     public SS7AggregationService(
             PersonRepository personRepository,
@@ -507,7 +507,7 @@ public class SS7AggregationService {
         performanceRepository.findAll()
                 .stream()
                 .filter(performance -> performance.getValue() != null)
-                .filter(this::isGradePerformance)
+                .filter(this::isSCOREPerformance)
                 .forEach(performance -> {
                     String modalityName = resolvePerformanceModalityName(performance);
 
@@ -557,11 +557,11 @@ public class SS7AggregationService {
             int attendance = attendanceRate.setScale(0, RoundingMode.HALF_UP).intValue();
             int competitiveness = competitivenessByModality.getOrDefault(modalityName, 0);
 
-            BigDecimal averageGrade = performanceByModality.getOrDefault(
+            BigDecimal averageSCORE = performanceByModality.getOrDefault(
                     modalityName,
                     BigDecimal.ZERO);
 
-            int performance = averageGrade
+            int performance = averageSCORE
                     .multiply(BigDecimal.TEN)
                     .setScale(0, RoundingMode.HALF_UP)
                     .intValue();
@@ -827,10 +827,10 @@ public class SS7AggregationService {
                         && member.getRelationship().name().equals(view.name()));
     }
     
-    private boolean isGradePerformance(Performance performance) {
+    private boolean isSCOREPerformance(Performance performance) {
         return performance.getStatisticType() != null
                 && performance.getStatisticType().getName() != null
-                && GRADE_STATISTIC_NAME.equalsIgnoreCase(
+                && SCORE_STATISTIC_NAME.equalsIgnoreCase(
                         performance.getStatisticType().getName().trim());
     }
 
