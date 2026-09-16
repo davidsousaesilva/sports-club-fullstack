@@ -62,16 +62,6 @@ function FinanceReportPage() {
             de pagamento.
           </p>
         </div>
-
-        <Button
-          type="button"
-          variant="outline"
-          disabled
-          className="w-full shrink-0 sm:w-auto"
-        >
-          <Download className="mr-2 h-4 w-4" />
-          Exportar PDF
-        </Button>
       </header>
 
       <div className="min-w-0">

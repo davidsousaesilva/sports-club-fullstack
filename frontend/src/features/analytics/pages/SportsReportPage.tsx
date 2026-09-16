@@ -56,11 +56,6 @@ function SportsReportPage() {
             competitivos.
           </p>
         </div>
-
-        <Button type="button" variant="outline" disabled>
-          <Download className="mr-2 h-4 w-4" />
-          Exportar PDF
-        </Button>
       </header>
 
       <SportsReportStatsGrid items={stats} isLoading={isLoading} />
