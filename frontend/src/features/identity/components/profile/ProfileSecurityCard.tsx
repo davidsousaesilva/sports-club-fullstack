@@ -90,10 +90,14 @@ function ProfileSecurityCard({
     confirm: false,
   });
 
+  const [changePasswordError, setChangePasswordError] = useState<string | null>(
+    null,
+  );
+
   const [resetPasswordError, setResetPasswordError] = useState<string | null>(
     null,
   );
-  
+
   const [changePasswordValues, setChangePasswordValues] =
     useState<ChangeOwnPasswordFormValues>({
       currentPassword: "",
@@ -137,13 +141,19 @@ function ProfileSecurityCard({
       return;
     }
 
-    await onChangeOwnPassword(changePasswordValues);
+    setChangePasswordError(null);
 
-    setChangePasswordValues({
-      currentPassword: "",
-      newPassword: "",
-      confirmNewPassword: "",
-    });
+    try {
+      await onChangeOwnPassword(changePasswordValues);
+
+      setChangePasswordValues({
+        currentPassword: "",
+        newPassword: "",
+        confirmNewPassword: "",
+      });
+    } catch (error) {
+      setChangePasswordError(getErrorMessage(error));
+    }
   };
 
   const handleResetPassword = async (event: FormEvent<HTMLFormElement>) => {
@@ -166,7 +176,6 @@ function ProfileSecurityCard({
       setResetPasswordError(getErrorMessage(error));
     }
   };
-  
 
   const dialogTitle = canChangeOwnPassword
     ? "Alterar password"
@@ -222,6 +231,7 @@ function ProfileSecurityCard({
                 <Label className="mb-2 block" htmlFor="current-password">
                   Password atual
                 </Label>
+
                 <div className="relative">
                   <Input
                     id="current-password"
@@ -235,6 +245,7 @@ function ProfileSecurityCard({
                     }
                     disabled={isChangingOwnPassword}
                   />
+
                   <button
                     type="button"
                     onClick={() =>
@@ -263,6 +274,7 @@ function ProfileSecurityCard({
                 <Label className="mb-2 block" htmlFor="new-password">
                   Nova password
                 </Label>
+
                 <div className="relative">
                   <Input
                     id="new-password"
@@ -276,6 +288,7 @@ function ProfileSecurityCard({
                     }
                     disabled={isChangingOwnPassword}
                   />
+
                   <button
                     type="button"
                     onClick={() =>
@@ -304,6 +317,7 @@ function ProfileSecurityCard({
                 <Label className="mb-2 block" htmlFor="confirm-new-password">
                   Confirmar nova password
                 </Label>
+
                 <div className="relative">
                   <Input
                     id="confirm-new-password"
@@ -317,6 +331,7 @@ function ProfileSecurityCard({
                     }
                     disabled={isChangingOwnPassword}
                   />
+
                   <button
                     type="button"
                     onClick={() =>
@@ -342,12 +357,13 @@ function ProfileSecurityCard({
               </div>
 
               <div className="rounded-xl border border-blue-200 bg-blue-50 p-3 text-sm text-blue-800">
-                A password deve ter pelo menos 4 caracteres e pelo menos 1 dígito.
+                A password deve ter pelo menos 4 caracteres e pelo menos 1
+                dígito.
               </div>
 
-              {resetPasswordError ? (
+              {changePasswordError ? (
                 <p className="whitespace-pre-line rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
-                  {resetPasswordError}
+                  {changePasswordError}
                 </p>
               ) : null}
 
@@ -360,6 +376,7 @@ function ProfileSecurityCard({
                 >
                   Cancelar
                 </Button>
+
                 <Button type="submit" disabled={isChangeOwnPasswordDisabled}>
                   {isChangingOwnPassword ? "A atualizar..." : "Confirmar"}
                 </Button>
@@ -371,6 +388,7 @@ function ProfileSecurityCard({
             <form className="space-y-4" onSubmit={handleResetPassword}>
               <div className="flex items-center gap-3 rounded-xl border border-amber-200 bg-amber-50 p-4">
                 <KeyRound className="h-4 w-4 text-amber-700" />
+
                 <p className="text-sm text-amber-800">
                   Esta ação define uma password diretamente para este perfil.
                 </p>
@@ -380,6 +398,7 @@ function ProfileSecurityCard({
                 <Label className="mb-2 block" htmlFor="staff-new-password">
                   Nova password
                 </Label>
+
                 <Input
                   id="staff-new-password"
                   type="password"
@@ -401,6 +420,7 @@ function ProfileSecurityCard({
                 >
                   Confirmar nova password
                 </Label>
+
                 <Input
                   id="staff-confirm-new-password"
                   type="password"
@@ -415,6 +435,12 @@ function ProfileSecurityCard({
                 />
               </div>
 
+              {resetPasswordError ? (
+                <p className="whitespace-pre-line rounded-lg bg-red-50 px-3 py-2 text-sm text-red-700">
+                  {resetPasswordError}
+                </p>
+              ) : null}
+
               <div className="flex justify-end gap-2">
                 <Button
                   type="button"
@@ -424,6 +450,7 @@ function ProfileSecurityCard({
                 >
                   Cancelar
                 </Button>
+
                 <Button type="submit" disabled={isResetPasswordDisabled}>
                   {isResettingPassword ? "A guardar..." : "Confirmar"}
                 </Button>
