@@ -187,17 +187,6 @@ npm run build
 npm run preview
 ```
 
-## Debugging authentication
-
-Browser DevTools can be used to inspect the authentication state of the application origin:
-
-- Application → Local Storage
-- Application → Session Storage
-- Application → Cookies
-- Network → request headers
-
-Authentication may be represented through cookies, bearer headers, or the configured session mechanism. After logout, protected API requests are expected to fail with `401 Unauthorized` when no valid session remains.
-
 ## Deployment
 
 The frontend was deployed on Vercel. Production values for `VITE_API_BASE_URL` and `VITE_AUTH_MODE` were configured in the Vercel project environment settings and applied when Vite built the application.

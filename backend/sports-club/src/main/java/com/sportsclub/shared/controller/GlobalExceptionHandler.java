@@ -52,10 +52,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(InvalidCurrentPasswordException.class)
-        public ResponseEntity<Map<String, String>> handleInvalidCurrentPassword(
-                InvalidCurrentPasswordException ex) {
+    public ResponseEntity<Map<String, String>> handleInvalidCurrentPassword(
+            InvalidCurrentPasswordException ex) {
 
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+        return ResponseEntity.badRequest()
                 .body(Map.of("error", ex.getMessage()));
         }
 }

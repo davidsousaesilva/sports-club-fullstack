@@ -296,6 +296,4 @@ The backend was deployed on Render. Its remote PostgreSQL database was hosted on
 
 ## Project status
 
-This backend was developed as part of an academic group project during the 2025/2026 academic year and is published as a portfolio project.
-
 The payment model and API surface are prepared for external gateway integration, but a real payment provider is not configured in the academic deployment.

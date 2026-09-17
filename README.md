@@ -16,6 +16,28 @@ A configurable full-stack platform for managing sports clubs across multiple mod
 - Payment domain designed for future gateway integration, including mock payment flows and webhook-oriented endpoints
 - Financial and sports analytics dashboards and reports
 
+## Screenshots
+
+![Manager dashboard](docs/dashboard.png)
+
+![Club configuration](docs/configurations.png)
+
+![Modality editing](docs/editModality.png)
+
+![Calendar](docs/calendar.png)
+
+![Trainings](docs/trainings.png)
+
+![Competition](docs/competition.png)
+
+![Performance tracking](docs/performances.png)
+
+![Athlete profile](docs/profile.png)
+
+![Notifications](docs/notifications.png)
+
+![Switching view between roles](docs/view_change.png)
+
 ## Architecture
 
 The project is a full-stack, three-tier application.
