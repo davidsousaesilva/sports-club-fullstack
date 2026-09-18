@@ -2,6 +2,8 @@
 
 A configurable full-stack platform for managing sports clubs across multiple modalities. It supports role-specific workflows for athletes, coaches, staff, and managers, covering sports operations, attendance and performance tracking, membership fees, payment records, dashboards, and reports.
 
+> **Live demo availability:** The application depends on independently deployed frontend and backend services. After approximately 15 minutes without requests, the backend may enter an inactive state. During the subsequent startup period, the application may appear blank or unavailable. Please wait approximately one minute and refresh the page. This is a limitation of the academic deployment environment.
+
 > Academic group project developed during the 2025/2026 academic year at the University of Minho. See [Team](#team) for authorship details.
 
 ## Key features
